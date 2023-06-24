@@ -1,0 +1,74 @@
+<CMD_DATA_DRIVEN>
+	<CMD_TOOLS>
+		<CMD_TOOL name="ATMEL" path="C:\Users\Public\DSA\cmd_test\atprogram.exe">
+			<PARAMS>
+				<PARAM id="1" value="-t"/>
+				<PARAM id="2" value="atmelice"/>
+				<PARAM id="3" value="-i"/>
+				<PARAM id="4" value="SWD"/>
+				<PARAM id="5" value="$MCU$"/>
+			</PARAMS>
+			<ACTIONS>
+				<ACTION id="FLASH">
+					<DESC>
+						Program MCU using a elf file.
+					</DESC>
+					<PARAMS>
+						<PARAM id="6" var="program"/>
+						<PARAM id="7" var="-c"/>
+						<PARAM id="8" var="-f"/>
+						<PARAM id="9" var="$FILE$"/>
+					</PARAMS>
+				</ACTION>
+				<ACTION id="WRITE">
+					<DESC>
+						Write memory  of MCU given address position and values in hex
+					</DESC>			
+					<PARAMS>
+						<PARAM id="6" var="write"/>
+						<PARAM id="7" var="-o"/>
+						<PARAM id="8" var="$WRITE_ADDRESS$"/>
+						<PARAM id="9" var="--values"/>
+						<PARAM id="10" var="$WRITE_VALUE$"/>
+					</PARAMS>
+				</ACTION>
+				<ACTION id="FLASH_BIN">
+					<DESC>
+						Program MCU using a bin file.
+					</DESC>			
+					<PARAMS>
+						<PARAM id="6" var="program"/>
+						<PARAM id="7" var="-o"/>
+						<PARAM id="8" var="--format"/>
+						<PARAM id="9" var="bin"/>
+						<PARAM id="10" var="-f"/>
+						<PARAM id="10" var="$BIN_FILE$"/>
+					</PARAMS>
+				</ACTION>
+				<ACTION id="ERASE">
+					<DESC>
+						Erase MCU memory given address position.
+					</DESC>
+					<PARAMS>
+						<PARAM id="6" var="erase"/>
+						<PARAM id="7" var="-o"/>
+						<PARAM id="8" var="$ADDRESS$"/>
+						<PARAM id="9" var="-s"/>
+						<PARAM id="10" var="$ERASE_S$"/>
+					</PARAMS>
+				</ACTION>	
+			</ACTIONS>
+		</CMD_TOOL>
+	</CMD_TOOLS>
+	<MCUS>
+		<MCU id="1" MCU_NAME="atsamc21j17a" cmdtool="ATMEL">
+			<ATTRS>
+				<ATTR type="filepath" name="FILE">bootloader.elf</ATTR>
+				<ATTR type="hexstr" name="WRITE_ADDRESS">0x1ff00</ATTR>
+				<ATTR type="hexstr" name="WRITE_VALUE">3430345553303030</ATTR>
+				<ATTR type="filepath" name="BIN_FILE">firmware.bin</ATTR>
+				<ATTR type="int" name="ERASE_S">256</ATTR>
+			</ATTRS>
+		</MCU>
+	</MCUS>	
+</CMD_DATA_DRIVEN>
